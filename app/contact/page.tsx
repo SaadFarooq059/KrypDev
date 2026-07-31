@@ -16,14 +16,12 @@ const channels = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@krypdev.com',
-    href: 'mailto:hello@krypdev.com',
+    value: 'Coming soon',
   },
   {
     icon: Phone,
     label: 'Phone',
-    value: '+1 (555) 012-3456',
-    href: 'tel:+15550123456',
+    value: 'Coming soon',
   },
   {
     icon: MapPin,
@@ -64,8 +62,8 @@ export default function ContactPage() {
               Talk to a human, fast
             </h2>
             <p className="mt-4 max-w-md text-pretty leading-relaxed text-muted-foreground">
-              Prefer email or a call? Every channel lands with an engineer who
-              can actually answer your questions.
+              Prefer to write us a brief? Send the form and an engineer who can
+              actually answer your questions will follow up.
             </p>
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
               {channels.map((c) => (
@@ -74,16 +72,9 @@ export default function ContactPage() {
                   <p className="mt-4 font-mono text-xs text-muted-foreground">
                     {c.label}
                   </p>
-                  {c.href ? (
-                    <a
-                      href={c.href}
-                      className="mt-1 block font-heading font-semibold text-foreground transition-colors hover:text-primary"
-                    >
-                      {c.value}
-                    </a>
-                  ) : (
-                    <p className="mt-1 font-heading font-semibold">{c.value}</p>
-                  )}
+                  <p className="mt-1 font-heading font-semibold text-foreground">
+                    {c.value}
+                  </p>
                 </div>
               ))}
             </div>

@@ -79,12 +79,12 @@ export default function StackFeatureSection({
             >
               Get a Quote <ArrowRight className="size-4" />
             </Link>
-            <a
-              href="mailto:hello@krypdev.com"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-secondary/30 px-7 py-3.5 font-semibold text-foreground transition-colors hover:bg-secondary/60"
             >
-              hello@krypdev.com
-            </a>
+              Contact us
+            </Link>
           </div>
         </div>
 

@@ -29,13 +29,11 @@ const footerLinks = [
 const contactInfo = [
   {
     icon: <Mail size={18} className="text-primary" />,
-    text: 'hello@krypdev.com',
-    href: 'mailto:hello@krypdev.com',
+    text: 'Email — Coming soon',
   },
   {
     icon: <Phone size={18} className="text-primary" />,
-    text: '+1 (555) 012-3456',
-    href: 'tel:+15550123456',
+    text: 'Phone — Coming soon',
   },
   {
     icon: <MapPin size={18} className="text-primary" />,

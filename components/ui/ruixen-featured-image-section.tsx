@@ -101,7 +101,7 @@ function FeatureTab({
       aria-selected={selected}
       tabIndex={0}
       className={cn(
-        'relative flex cursor-pointer items-center gap-2 rounded-lg border border-border bg-card/50 py-2 pr-4 transition-colors',
+        'relative flex min-w-0 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-border bg-card/50 py-2 pl-2 pr-2.5 transition-colors sm:flex-none sm:justify-start sm:gap-2 sm:py-2 sm:pr-4',
         'hover:border-primary/40 hover:bg-card',
         selected && 'border-primary/50 bg-card',
       )}
@@ -120,12 +120,14 @@ function FeatureTab({
         />
       )}
 
-      <div className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-        <Icon className="h-4 w-4" />
+      <div className="inline-flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary sm:ml-3 sm:size-8">
+        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
       </div>
-      <div className="text-sm font-medium text-foreground">{title}</div>
+      <div className="truncate text-xs font-medium text-foreground sm:text-sm">
+        {title}
+      </div>
       {isNew && (
-        <div className="rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
+        <div className="hidden rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground sm:block">
           new
         </div>
       )}
@@ -225,7 +227,7 @@ export default function RuixenFeaturedImageSection() {
           role="tablist"
           aria-label="Delivery steps"
         >
-          <div className="flex flex-col gap-3 lg:flex-row lg:gap-4">
+          <div className="flex w-full max-w-xl flex-row gap-2 sm:max-w-none sm:w-auto sm:gap-3 lg:gap-4">
             {tabs.map((tab, tabIndex) => (
               <FeatureTab
                 {...tab}
