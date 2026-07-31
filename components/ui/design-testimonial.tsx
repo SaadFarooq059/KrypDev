@@ -80,20 +80,15 @@ export function DesignTestimonial({
   const current = testimonials[activeIndex]
 
   return (
-    <section className="relative overflow-hidden border-y border-border bg-secondary/10 py-24 md:py-32">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 70% 50%, rgba(192,132,252,0.1), transparent 55%)',
-        }}
-      />
+    <section className="relative overflow-hidden border-y border-border bg-secondary/20 py-16 sm:py-20 md:py-24">
       <div
         ref={containerRef}
         className="relative mx-auto w-full max-w-5xl px-4 md:px-6"
         onMouseMove={handleMouseMove}
       >
+        <p className="mb-6 font-mono text-sm text-primary md:hidden">
+          // testimonials
+        </p>
         <motion.div
           className="pointer-events-none absolute -left-4 top-1/2 hidden -translate-y-1/2 select-none text-[16rem] font-bold leading-none tracking-tighter text-foreground/[0.04] md:block lg:-left-8 lg:text-[28rem]"
           style={{ x: numberX, y: numberY }}
@@ -115,13 +110,13 @@ export function DesignTestimonial({
         <div className="relative flex">
           <div className="hidden flex-col items-center justify-center border-r border-border pr-10 md:flex lg:pr-16">
             <motion.span
-              className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
+              className="font-mono text-sm text-primary"
               style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              Testimonials
+              // testimonials
             </motion.span>
 
             <div className="relative mt-8 h-32 w-px bg-border">
@@ -135,11 +130,7 @@ export function DesignTestimonial({
             </div>
           </div>
 
-          <div className="flex-1 py-4 md:py-12 md:pl-10 lg:pl-16">
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-primary md:hidden">
-              Testimonials
-            </p>
-
+          <div className="flex-1 py-2 md:py-8 md:pl-10 lg:pl-16">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -147,20 +138,20 @@ export function DesignTestimonial({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4 }}
-                className="mb-8"
+                className="mb-6 sm:mb-8"
               >
-                <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 font-mono text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground">
                   <span className="size-1.5 rounded-full bg-primary" />
                   {current.company}
                 </span>
               </motion.div>
             </AnimatePresence>
 
-            <div className="relative mb-12 min-h-[120px] md:min-h-[140px]">
+            <div className="relative mb-10 min-h-[100px] sm:mb-12 sm:min-h-[120px] md:min-h-[140px]">
               <AnimatePresence mode="wait">
                 <motion.blockquote
                   key={activeIndex}
-                  className="font-heading text-3xl font-light leading-[1.15] tracking-tight text-foreground md:text-4xl lg:text-5xl"
+                  className="font-heading text-2xl font-semibold leading-[1.2] tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl"
                   initial="hidden"
                   animate="visible"
                   exit="exit"

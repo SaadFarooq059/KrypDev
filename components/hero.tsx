@@ -6,11 +6,8 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
-        <span className="hero-eyebrow">Custom Dev · AI · IT Support</span>
-
         <h1 className="hero-title">
-          We Build{' '}
-          <span className="hero-title-accent">What Comes Next</span>
+          We Build <span className="hero-title-accent">What Comes Next</span>
         </h1>
 
         <p className="hero-subtitle">

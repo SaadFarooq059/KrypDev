@@ -52,22 +52,14 @@ function openInNewTab(link: string) {
 
 export function AiProjectShowcase() {
   return (
-    <section className="relative overflow-hidden border-y border-border py-24">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 20% 40%, rgba(192,132,252,0.12), transparent 55%)',
-        }}
-      />
+    <section className="relative overflow-hidden border-y border-border bg-secondary/20 py-16 sm:py-20 md:py-24">
       <div className="relative mx-auto max-w-6xl px-4 md:px-6">
-        <div className="mb-12 max-w-2xl">
+        <div className="mb-10 max-w-2xl sm:mb-12">
           <p className="font-mono text-sm text-primary">// featured_builds</p>
-          <h2 className="mt-3 text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 text-balance font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
             AI products we engineer
           </h2>
-          <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             From conversational agents to autonomous pipelines — a look at the
             kind of intelligence we design, ship, and harden for production.
           </p>

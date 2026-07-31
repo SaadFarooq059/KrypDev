@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import { ArrowRight, Zap } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type Particle = {
@@ -150,12 +150,12 @@ export default function AetherFlowHero({
                 dxMouseA * dxMouseA + dyMouseA * dyMouseA,
               )
               if (distanceMouseA < mouse.radius) {
-                stroke = `rgba(255, 255, 255, ${opacityValue})`
+                stroke = `rgba(192, 132, 252, ${opacityValue})`
               }
             }
 
             ctx.strokeStyle = stroke
-            ctx.lineWidth = 1
+            ctx.lineWidth = 0.8
             ctx.beginPath()
             ctx.moveTo(particles[a].x, particles[a].y)
             ctx.lineTo(particles[b].x, particles[b].y)
@@ -168,35 +168,29 @@ export default function AetherFlowHero({
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update()
-      }
+      for (const particle of particles) particle.update()
       connect()
     }
+    animate()
 
     const handleMouseMove = (event: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
       mouse.x = event.clientX - rect.left
       mouse.y = event.clientY - rect.top
     }
-
-    const handleMouseOut = () => {
+    const handleMouseLeave = () => {
       mouse.x = null
       mouse.y = null
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('mouseout', handleMouseOut)
-
-    init()
-    animate()
+    canvas.parentElement?.addEventListener('mousemove', handleMouseMove)
+    canvas.parentElement?.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseout', handleMouseOut)
       cancelAnimationFrame(animationFrameId)
+      window.removeEventListener('resize', resizeCanvas)
+      canvas.parentElement?.removeEventListener('mousemove', handleMouseMove)
+      canvas.parentElement?.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [])
 
@@ -213,10 +207,14 @@ export default function AetherFlowHero({
     }),
   }
 
+  const titleParts = title.split(',')
+  const titleLead = titleParts[0]?.trim() ?? title
+  const titleTail = titleParts.slice(1).join(',').trim()
+
   return (
     <div
       className={cn(
-        'relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background',
+        'relative flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-background',
         className,
       )}
     >
@@ -225,28 +223,31 @@ export default function AetherFlowHero({
         className="pointer-events-none absolute inset-0 h-full w-full"
       />
 
-      <div className="relative z-10 px-6 text-center">
-        <motion.div
+      <div className="relative z-10 px-4 text-center sm:px-6">
+        <motion.p
           custom={0}
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 backdrop-blur-sm"
+          className="mb-5 font-mono text-sm text-primary"
         >
-          <Zap className="size-4 text-primary" />
-          <span className="font-mono text-sm font-medium text-foreground/90">
-            {eyebrow}
-          </span>
-        </motion.div>
+          // {eyebrow.toLowerCase().replace(/\s+/g, '_')}
+        </motion.p>
 
         <motion.h1
           custom={1}
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="mb-6 bg-gradient-to-b from-white to-muted-foreground bg-clip-text font-heading text-5xl font-bold tracking-tighter text-transparent md:text-7xl lg:text-8xl"
+          className="mb-6 text-balance font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          {title}
+          {titleTail ? (
+            <>
+              {titleLead}, <span className="text-gradient">{titleTail}</span>
+            </>
+          ) : (
+            <span className="text-gradient">{titleLead}</span>
+          )}
         </motion.h1>
 
         <motion.p
@@ -254,7 +255,7 @@ export default function AetherFlowHero({
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
-          className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground"
+          className="mx-auto mb-10 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
         >
           {description}
         </motion.p>
@@ -267,7 +268,7 @@ export default function AetherFlowHero({
         >
           <Link
             href={ctaHref}
-            className="mx-auto inline-flex items-center gap-2 rounded-lg bg-foreground px-8 py-4 font-semibold text-background shadow-lg transition-colors duration-300 hover:bg-foreground/90"
+            className="mx-auto inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-shadow duration-300 hover:glow-accent sm:px-8 sm:py-4 sm:text-base"
           >
             {ctaLabel}
             <ArrowRight className="size-5" />

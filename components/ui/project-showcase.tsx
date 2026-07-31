@@ -169,7 +169,7 @@ export function ProjectShowcase({
   return (
     <div
       ref={componentRef}
-      className="mx-auto w-full font-sans antialiased"
+      className="mx-auto w-full antialiased"
       style={{
         lineHeight: spacing.lineHeight,
         backgroundColor: 'transparent',
@@ -247,10 +247,9 @@ export function ProjectShowcase({
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
             <h3
-              className="font-heading font-bold"
+              className="font-heading font-bold text-foreground"
               style={{
                 fontSize: fontSizes.name,
-                color: colors.name,
                 marginTop: spacing.nameTop,
                 marginBottom: spacing.nameBottom,
                 textAlign: isRTL && !isMobileView ? 'right' : 'left',
@@ -259,9 +258,9 @@ export function ProjectShowcase({
               {activeItem.name}
             </h3>
             <p
+              className="font-mono text-primary"
               style={{
                 fontSize: fontSizes.position,
-                color: colors.position,
                 marginTop: spacing.positionTop,
                 marginBottom: spacing.positionBottom,
                 textAlign: isRTL && !isMobileView ? 'right' : 'left',
@@ -270,9 +269,9 @@ export function ProjectShowcase({
               {activeItem.designation}
             </p>
             <motion.p
+              className="text-muted-foreground"
               style={{
                 fontSize: fontSizes.testimony,
-                color: colors.testimony,
                 marginTop: spacing.testimonyTop,
                 marginBottom: spacing.testimonyBottom,
                 textAlign: isRTL && !isMobileView ? 'right' : 'left',

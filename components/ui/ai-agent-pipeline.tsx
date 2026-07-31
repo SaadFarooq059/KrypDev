@@ -136,20 +136,20 @@ export default function AiAgentPipeline() {
   }
 
   return (
-    <div className="w-full max-w-[680px] mx-auto overflow-hidden rounded-2xl border border-border bg-[#0d0420]/80 backdrop-blur-md glow-accent">
+    <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-2xl border border-border bg-card/80 backdrop-blur-md">
       {/* Header */}
-      <div className="px-[18px] py-[11px] border-b border-border/60 flex items-center justify-between">
+      <div className="flex items-center justify-between border-b border-border px-[18px] py-[11px]">
         <div className="flex items-center gap-[7px]">
           <motion.span
-            className="w-[6px] h-[6px] rounded-full bg-green-500 inline-block"
+            className="inline-block h-[6px] w-[6px] rounded-full bg-primary"
             animate={{ opacity: [1, 0.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <span className="font-mono text-[10px] tracking-[0.1em] text-muted-foreground/70">
+          <span className="font-mono text-[10px] tracking-[0.1em] text-muted-foreground">
             AGENT PIPELINE · LIVE
           </span>
         </div>
-        <span className="font-mono text-[10px] text-muted-foreground/50">
+        <span className="font-mono text-[10px] text-muted-foreground/70">
           3 agents · 0 errors
         </span>
       </div>
@@ -388,7 +388,7 @@ export default function AiAgentPipeline() {
         >
           Email Draft
         </text>
-        <StatusIndicator cx={550} cy={43} color="#22c55e" />
+        <StatusIndicator cx={550} cy={43} color="#c084fc" />
 
         <rect
           x="448"
@@ -410,7 +410,7 @@ export default function AiAgentPipeline() {
         >
           CRM Update
         </text>
-        <StatusIndicator cx={550} cy={81} color="#f59e0b" pulsing duration={1.9} />
+        <StatusIndicator cx={550} cy={81} color="#c084fc" pulsing duration={1.9} />
 
         <rect
           x="448"
@@ -432,7 +432,7 @@ export default function AiAgentPipeline() {
         >
           Report Gen
         </text>
-        <StatusIndicator cx={550} cy={119} color="#f59e0b" pulsing duration={2.2} delay={0.35} />
+        <StatusIndicator cx={550} cy={119} color="#c084fc" pulsing duration={2.2} delay={0.35} />
       </svg>
 
       {/* Message Display */}

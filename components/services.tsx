@@ -42,41 +42,50 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative mx-auto max-w-6xl px-4 py-24 md:px-6">
-      <div className="mb-14 max-w-2xl">
-        <p className="font-mono text-sm text-primary">// what we do</p>
-        <h2 className="mt-3 text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl">
-          End-to-end engineering services
-        </h2>
-        <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-          From concept to deployment and beyond, we cover the full software and
-          infrastructure lifecycle.
-        </p>
-      </div>
+    <section
+      id="services"
+      className="relative border-y border-border py-16 sm:py-20 md:py-24"
+    >
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <div className="mb-10 max-w-2xl sm:mb-14">
+          <p className="font-mono text-sm text-primary">// what_we_do</p>
+          <h2 className="mt-3 text-balance font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            End-to-end engineering services
+          </h2>
+          <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            From concept to deployment and beyond, we cover the full software
+            and infrastructure lifecycle.
+          </p>
+        </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((s) => (
-          <Link
-            key={s.title}
-            href={s.href}
-            className="group glass flex flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:glow-accent"
-          >
-            <div className="relative aspect-[16/11] w-full overflow-hidden">
-              <Image
-                src={s.image}
-                alt={s.title}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
-            </div>
-            <div className="relative flex flex-1 flex-col p-6 pt-5">
-              <h3 className="font-heading text-xl font-semibold">{s.title}</h3>
-              <p className="mt-2 leading-relaxed text-muted-foreground">{s.desc}</p>
-            </div>
-          </Link>
-        ))}
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {services.map((s) => (
+            <Link
+              key={s.title}
+              href={s.href}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:glow-accent"
+            >
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-background">
+                <Image
+                  src={s.image}
+                  alt={s.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
+              </div>
+              <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+                <h3 className="font-heading text-lg font-semibold text-foreground sm:text-xl">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  {s.desc}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   )

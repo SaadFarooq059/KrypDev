@@ -198,7 +198,7 @@ export default function RuixenFeaturedImageSection() {
 
   return (
     <section
-      className="relative overflow-hidden border-y border-border py-20 md:py-28"
+      className="relative overflow-hidden border-y border-border py-16 sm:py-20 md:py-24"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -208,23 +208,14 @@ export default function RuixenFeaturedImageSection() {
         }
       }}
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 50% 0%, rgba(192,132,252,0.16), transparent 55%)',
-        }}
-      />
-
       <div className="relative mx-auto max-w-6xl px-4 md:px-6">
         <p className="text-center font-mono text-sm text-primary">
           // how_we_deliver
         </p>
-        <h2 className="mt-3 text-balance text-center font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+        <h2 className="mt-3 text-balance text-center font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
           From idea to production
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-pretty text-center text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-pretty text-center text-base leading-relaxed text-muted-foreground sm:text-lg">
           Three clear steps. One studio. Watch how KrypDev takes your product
           from build to intelligence.
         </p>
@@ -246,8 +237,8 @@ export default function RuixenFeaturedImageSection() {
           </div>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-secondary/40 p-2.5 md:rounded-[28px]">
-          <div className="relative aspect-video overflow-hidden rounded-xl border border-border md:rounded-2xl">
+        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card/40 p-2 sm:p-2.5 md:rounded-[28px]">
+          <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-background md:rounded-2xl">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={active.image}
@@ -304,7 +295,7 @@ export default function RuixenFeaturedImageSection() {
                     'h-1.5 rounded-full transition-all duration-300',
                     i === selectedTab
                       ? 'w-6 bg-primary'
-                      : 'w-1.5 bg-white/35 hover:bg-white/55',
+                      : 'w-1.5 bg-foreground/30 hover:bg-foreground/50',
                   )}
                 />
               ))}
