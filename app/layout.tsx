@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   description:
     'KrypDev delivers custom application development, IT support services, and AI-powered solutions for forward-thinking businesses.',
   generator: 'v0.app',
+  icons: {
+    icon: [{ url: '/favicon.ico', sizes: 'any' }],
+    shortcut: '/favicon.ico',
+  },
 }
 
 export const viewport: Viewport = {

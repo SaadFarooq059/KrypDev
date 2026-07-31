@@ -5,6 +5,7 @@ import { SiteFooter } from '@/components/site-footer'
 import AetherFlowHero from '@/components/ui/aether-flow-hero'
 import { BuildSystemCta } from '@/components/build-system-cta'
 import { AiNeuralIntro } from '@/components/ai-neural-intro'
+import { AiIdeaToProd } from '@/components/ai-idea-to-prod'
 import { AiProjectShowcase } from '@/components/ai-project-showcase'
 import AiAgentPipeline from '@/components/ui/ai-agent-pipeline'
 
@@ -81,28 +82,12 @@ function OfferingCard({
   )
 }
 
-const steps = [
-  {
-    num: '01',
-    title: 'Audit & strategy',
-    desc: 'We identify the workflows where AI delivers measurable ROI — not just demos.',
-  },
-  {
-    num: '02',
-    title: 'Prototype fast',
-    desc: 'A working proof of concept on your data within weeks, evaluated against real tasks.',
-  },
-  {
-    num: '03',
-    title: 'Production hardening',
-    desc: 'Evals, monitoring, fallbacks, and cost controls before anything reaches your users.',
-  },
-]
-
 export default function AiSolutionsPage() {
   return (
     <main className="relative min-h-screen bg-background text-foreground">
       <Navbar />
+
+      {/* Brand promise */}
       <AetherFlowHero
         eyebrow="AI-First Engineering"
         title="Intelligence, engineered in"
@@ -111,9 +96,32 @@ export default function AiSolutionsPage() {
         ctaHref="/contact"
       />
 
+      {/* Our stance — production AI, not demos */}
       <AiNeuralIntro />
 
-      <section className="relative overflow-hidden border-y border-border bg-secondary/20 py-16 sm:py-20 md:py-24">
+      {/* What we can build */}
+      <section className="border-y border-border bg-secondary/20 py-16 sm:py-20 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          <div className="mb-10 max-w-2xl sm:mb-14">
+            <p className="font-mono text-sm text-primary">// what_we_build</p>
+            <h2 className="mt-3 text-balance font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+              AI capabilities, end to end
+            </h2>
+            <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Chatbots, models, agents, RAG, and governance — the full stack to
+              put intelligence inside your product.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+            {offerings.map((o) => (
+              <OfferingCard key={o.title} {...o} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How the systems run */}
+      <section className="relative overflow-hidden border-y border-border py-16 sm:py-20 md:py-24">
         <div className="relative mx-auto max-w-6xl px-4 md:px-6">
           <div className="mb-10 text-center sm:mb-12">
             <p className="font-mono text-sm text-primary">// live_pipeline</p>
@@ -129,52 +137,11 @@ export default function AiSolutionsPage() {
         </div>
       </section>
 
+      {/* Proof — products we engineer */}
       <AiProjectShowcase />
 
-      <section className="border-y border-border py-16 sm:py-20 md:py-24">
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="mb-10 max-w-2xl sm:mb-14">
-            <p className="font-mono text-sm text-primary">// what_we_build</p>
-            <h2 className="mt-3 text-balance font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              AI capabilities, end to end
-            </h2>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {offerings.map((o) => (
-              <OfferingCard key={o.title} {...o} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-secondary/20 py-16 sm:py-20 md:py-24">
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="mb-10 max-w-2xl sm:mb-14">
-            <p className="font-mono text-sm text-primary">// from_idea_to_prod</p>
-            <h2 className="mt-3 text-balance font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              How we take AI to production
-            </h2>
-          </div>
-          <div className="grid gap-5 sm:gap-6 lg:grid-cols-3">
-            {steps.map((s) => (
-              <div
-                key={s.num}
-                className="rounded-2xl border border-border bg-card/60 p-6 sm:p-7"
-              >
-                <span className="font-heading text-4xl font-bold text-primary/45">
-                  {s.num}
-                </span>
-                <h3 className="mt-4 font-heading text-lg font-semibold text-foreground">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* From idea to production */}
+      <AiIdeaToProd />
 
       <BuildSystemCta
         title="Let's build your AI system"

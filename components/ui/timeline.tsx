@@ -18,11 +18,13 @@ export function Timeline({
   eyebrow = '// service_capabilities',
   heading = 'Everything your product needs',
   description = 'Explore our services as you scroll — from customer-facing applications to the infrastructure and support behind them.',
+  className,
 }: {
   data: TimelineEntry[]
   eyebrow?: string
   heading?: string
   description?: string
+  className?: string
 }) {
   const contentRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -51,14 +53,14 @@ export function Timeline({
   return (
     <section
       ref={containerRef}
-      className="relative w-full overflow-hidden bg-background"
+      className={`relative w-full overflow-hidden bg-background ${className ?? ''}`}
     >
-      <div className="mx-auto max-w-6xl px-4 pb-8 pt-24 md:px-6">
+      <div className="mx-auto max-w-6xl px-4 pb-8 pt-16 sm:pt-20 md:px-6 md:pt-24">
         <p className="font-mono text-sm text-primary">{eyebrow}</p>
-        <h2 className="mt-3 max-w-3xl text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl">
+        <h2 className="mt-3 max-w-3xl text-balance font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
           {heading}
         </h2>
-        <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+        <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
           {description}
         </p>
       </div>
