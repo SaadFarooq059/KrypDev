@@ -1,0 +1,490 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-heading), 'sans-serif';
+  --font-sans: var(--font-sans), 'sans-serif';
+  --font-mono: var(--font-mono), 'monospace';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+:root,
+.dark {
+  color-scheme: dark;
+  /* Dark purple base */
+  --background: #0a0118;
+  --foreground: #ffffff;
+  /* Mid purple cards */
+  --card: #1c0d33;
+  --card-foreground: #ffffff;
+  --popover: #1c0d33;
+  --popover-foreground: #ffffff;
+  /* Amethyst accent */
+  --primary: #c084fc;
+  --primary-foreground: #1a0a2e;
+  --secondary: #3b1a6b;
+  --secondary-foreground: #ffffff;
+  --muted: #2a1450;
+  --muted-foreground: #b9a7d6;
+  --accent: #c084fc;
+  --accent-foreground: #1a0a2e;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(192, 132, 252, 0.18);
+  --input: rgba(192, 132, 252, 0.22);
+  --ring: #c084fc;
+  --radius: 0.75rem;
+
+  /* Project showcase */
+  --project-showcase-name-color: #fff;
+  --project-showcase-position-color: #b9a7d6;
+  --project-showcase-testimony-color: #e8dff5;
+  --project-showcase-name-size: 28px;
+  --project-showcase-position-size: 16px;
+  --project-showcase-testimony-size: 18px;
+  --project-showcase-name-top: 0;
+  --project-showcase-name-bottom: 10px;
+  --project-showcase-position-top: 0;
+  --project-showcase-position-bottom: 0.5em;
+  --project-showcase-testimony-top: 1.24em;
+  --project-showcase-testimony-bottom: 1em;
+  --project-showcase-line-height: 1.56;
+  --project-showcase-button-gradient: linear-gradient(to right, #7c3aed, #c084fc);
+  --project-showcase-button-background: #1a0a2e;
+  --project-showcase-button-text-color: #fff;
+  --project-showcase-button-outer-radius: 10px;
+  --project-showcase-button-inner-radius: 9px;
+  --project-showcase-button-hover-text-color: #fff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(59, 26, 107, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(192, 132, 252, 0.18);
+  }
+  .glow-accent {
+    box-shadow: 0 0 40px -8px rgba(192, 132, 252, 0.45);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #c084fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-22px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-orb {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.7s ease-out both;
+}
+
+/* Cosmic parallax hero (About) */
+:root {
+  --animation-iteration: infinite;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes animGravity {
+  0% {
+    transform: translateY(-26px);
+    opacity: 0;
+  }
+  30%,
+  80% {
+    letter-spacing: 0.35em;
+    padding-left: 0.35em;
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  92%,
+  100% {
+    letter-spacing: 0.28em;
+    padding-left: 0.28em;
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+}
+
+@keyframes animDont {
+  0%,
+  15% {
+    transform: translateY(-26px);
+    opacity: 0;
+  }
+  35%,
+  80% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  92%,
+  100% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+}
+
+@keyframes animLet {
+  0%,
+  25% {
+    transform: translateY(-26px);
+    opacity: 0;
+  }
+  45%,
+  80% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  92%,
+  100% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+}
+
+@keyframes animGo {
+  0%,
+  35% {
+    transform: translateY(-26px);
+    opacity: 0;
+  }
+  55%,
+  80% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  92%,
+  100% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+}
+
+.cosmic-parallax-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at bottom, #1c0d33 0%, #0a0118 70%, #05000d 100%);
+  --animation-iteration: infinite;
+}
+
+.cosmic-parallax-container .cosmic-stars,
+.cosmic-parallax-container .cosmic-stars-medium,
+.cosmic-parallax-container .cosmic-stars-large {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.cosmic-parallax-container .cosmic-stars {
+  width: 1px;
+  height: 1px;
+  animation: animStar 50s linear var(--animation-iteration);
+}
+
+.cosmic-parallax-container .cosmic-stars-medium {
+  width: 2px;
+  height: 2px;
+  animation: animStar 100s linear var(--animation-iteration);
+}
+
+.cosmic-parallax-container .cosmic-stars-large {
+  width: 3px;
+  height: 3px;
+  animation: animStar 150s linear var(--animation-iteration);
+}
+
+.cosmic-parallax-container .cosmic-stars::after,
+.cosmic-parallax-container .cosmic-stars-medium::after,
+.cosmic-parallax-container .cosmic-stars-large::after {
+  content: ' ';
+  position: absolute;
+  top: 2000px;
+  left: 0;
+  background: transparent;
+  box-shadow: var(--star-shadow);
+}
+
+.cosmic-parallax-container .cosmic-stars::after {
+  width: 1px;
+  height: 1px;
+}
+
+.cosmic-parallax-container .cosmic-stars-medium::after {
+  width: 2px;
+  height: 2px;
+}
+
+.cosmic-parallax-container .cosmic-stars-large::after {
+  width: 3px;
+  height: 3px;
+}
+
+.cosmic-parallax-container #horizon {
+  position: absolute;
+  width: 160%;
+  height: 70%;
+  left: 50%;
+  bottom: -20%;
+  margin-left: -80%;
+  border-radius: 100% / 100%;
+  background: #7c3aed;
+  filter: blur(30px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.cosmic-parallax-container #horizon .glow {
+  position: absolute;
+  inset: -8%;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(192, 132, 252, 0.85) 0%,
+    rgba(124, 58, 237, 0.35) 40%,
+    transparent 70%
+  );
+  filter: blur(18px);
+}
+
+.cosmic-parallax-container #earth {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  left: 50%;
+  bottom: -50%;
+  margin-left: -100%;
+  border-radius: 100% / 100%;
+  background: #0a0118;
+  pointer-events: none;
+}
+
+.cosmic-parallax-container #earth::before {
+  content: ' ';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 62px 20px rgba(124, 58, 237, 0.55);
+}
+
+.cosmic-parallax-container #earth::after {
+  content: ' ';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 1, 24, 1) 0%,
+    rgba(10, 1, 24, 0) 50%,
+    rgba(10, 1, 24, 1) 100%
+  );
+}
+
+.cosmic-parallax-container #title {
+  position: absolute;
+  top: 42%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  margin-top: -0.5em;
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #c084fc 55%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation-name: animGravity;
+  animation-duration: 6s;
+  animation-iteration-count: var(--animation-iteration);
+  animation-timing-function: ease;
+}
+
+.cosmic-parallax-container #subtitle {
+  position: absolute;
+  top: 58%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35em 0.6em;
+  padding: 0 1rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(0.75rem, 2.4vw, 1.35rem);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-align: center;
+}
+
+.cosmic-parallax-container #subtitle span {
+  color: #e8dff5;
+  animation-duration: 6s;
+  animation-iteration-count: var(--animation-iteration);
+  animation-timing-function: ease;
+}
+
+.cosmic-parallax-container #subtitle .subtitle-part-1 {
+  animation-name: animDont;
+}
+
+.cosmic-parallax-container #subtitle .subtitle-part-2 {
+  animation-name: animLet;
+}
+
+.cosmic-parallax-container #subtitle .subtitle-part-3 {
+  animation-name: animGo;
+}
+
+@media (max-width: 640px) {
+  .cosmic-parallax-container #title {
+    top: 40%;
+    letter-spacing: 0.12em;
+    padding-left: 0.12em;
+  }
+
+  @keyframes animGravity {
+    0% {
+      transform: translateY(-26px);
+      opacity: 0;
+    }
+    30%,
+    80% {
+      letter-spacing: 0.16em;
+      padding-left: 0.16em;
+      transform: translateY(0px);
+      opacity: 1;
+    }
+    92%,
+    100% {
+      letter-spacing: 0.12em;
+      padding-left: 0.12em;
+      transform: translateY(-4px);
+      opacity: 0;
+    }
+  }
+
+  .cosmic-parallax-container #subtitle {
+    top: 56%;
+    letter-spacing: 0.18em;
+    gap: 0.25em 0.4em;
+  }
+}
