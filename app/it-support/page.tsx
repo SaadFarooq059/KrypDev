@@ -182,7 +182,11 @@ export default function ItSupportPage() {
         </div>
       </section>
 
-      <PageCta title="Need IT off your plate?" />
+      <PageCta
+        title="Need IT off your plate?"
+        leftBadge="24/7 Monitoring"
+        rightBadge="Remote Ops"
+      />
       <SiteFooter />
     </main>
   )

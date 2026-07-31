@@ -97,7 +97,8 @@ export default function ContactPage() {
 
       <PageCta
         title="Ready to start the conversation?"
-        description="Send your brief through the form or book the next step — our engineering team will respond within one business day."
+        leftBadge="1-Day Reply"
+        rightBadge="Engineering Team"
       />
       <SiteFooter />
     </main>

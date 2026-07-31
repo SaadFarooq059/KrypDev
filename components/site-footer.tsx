@@ -1,6 +1,8 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { Mail, Phone, MapPin, GitBranch, MessageCircle, Link as LinkIcon, Globe } from 'lucide-react'
 import { FooterBackgroundGradient, TextHoverEffect } from '@/components/ui/hover-footer'
 
@@ -55,11 +57,15 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-12 pb-12 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-16">
           {/* Brand section */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <span className="font-heading text-3xl font-bold text-foreground">
-                Kryp<span className="text-primary">Dev</span>
-              </span>
-            </div>
+            <Link href="/" aria-label="KrypDev home" className="inline-flex w-fit">
+              <Image
+                src="/logo.png"
+                alt="KrypDev"
+                width={420}
+                height={98}
+                className="h-14 w-auto object-contain md:h-16"
+              />
+            </Link>
             <p className="text-sm leading-relaxed text-muted-foreground">
               We design and engineer AI-powered software, building what comes
               next for ambitious teams.

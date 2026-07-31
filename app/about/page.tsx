@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import { Navbar } from '@/components/navbar'
 import { SiteFooter } from '@/components/site-footer'
 import { PageCta } from '@/components/page-cta'
-import { TechStack } from '@/components/tech-stack'
+import { AboutFounders } from '@/components/about-founders'
+import { AboutHowItWorks } from '@/components/about-how-it-works'
+import { AboutPrinciples } from '@/components/about-principles'
 import ImpactSection from '@/components/ui/impact-section'
 import { CosmicParallaxBg } from '@/components/ui/parallax-cosmic-background'
 import RuixenBentoCards from '@/components/ui/ruixen-bento-cards'
@@ -25,13 +27,26 @@ export default function AboutPage() {
         />
       </section>
 
+      {/* Who we are */}
       <RuixenBentoCards />
 
+      {/* Who leads */}
+      <AboutFounders />
+
+      {/* What we stand for */}
+      <AboutPrinciples />
+
+      {/* How an engagement runs */}
+      <AboutHowItWorks />
+
+      {/* What that delivers */}
       <ImpactSection />
 
-      <TechStack />
-
-      <PageCta title="Want to build with us?" />
+      <PageCta
+        title="Want to build with us?"
+        leftBadge="AI-First Studio"
+        rightBadge="Founder-Led Team"
+      />
       <SiteFooter />
     </main>
   )

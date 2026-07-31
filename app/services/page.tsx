@@ -22,7 +22,11 @@ export default function ServicesPage() {
 
       <ServicesProcessSwap />
 
-      <PageCta />
+      <PageCta
+        title="Let's ship your next product"
+        leftBadge="Web · Mobile · Cloud"
+        rightBadge="End-to-End Build"
+      />
       <SiteFooter />
     </main>
   )

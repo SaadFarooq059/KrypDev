@@ -1,7 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
-import { Code2, MenuIcon, XIcon } from 'lucide-react'
+import { MenuIcon, XIcon } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
@@ -103,13 +104,15 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <nav className="glass mx-auto mt-3 flex h-14 w-[calc(100%-1.5rem)] max-w-6xl items-center justify-between rounded-xl border border-border px-4 md:px-5">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <Code2 className="size-5" />
-          </span>
-          <span className="font-heading text-xl font-bold tracking-tight">
-            Kryp<span className="text-primary">Dev</span>
-          </span>
+        <Link href="/" className="flex items-center" aria-label="KrypDev home">
+          <Image
+            src="/logo.png"
+            alt="KrypDev"
+            width={180}
+            height={42}
+            className="h-7 w-auto object-contain md:h-8"
+            priority
+          />
         </Link>
 
         <DesktopMenu />
@@ -226,9 +229,13 @@ function MobileNav() {
         showClose={false}
       >
         <div className="flex h-14 items-center justify-between border-b border-border px-4">
-          <span className="font-heading text-lg font-bold">
-            Kryp<span className="text-primary">Dev</span>
-          </span>
+          <Image
+            src="/logo.png"
+            alt="KrypDev"
+            width={160}
+            height={38}
+            className="h-7 w-auto object-contain"
+          />
           <SheetClose asChild>
             <button
               type="button"

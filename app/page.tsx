@@ -20,7 +20,11 @@ export default function Page() {
       <WhyKrypDev />
       <DesignTestimonial />
       <GlobalReach />
-      <PageCta />
+      <PageCta
+        title="Ready to build what comes next?"
+        leftBadge="Custom Software"
+        rightBadge="Worldwide Delivery"
+      />
       <SiteFooter />
     </main>
   )
