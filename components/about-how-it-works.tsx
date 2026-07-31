@@ -33,12 +33,12 @@ const STEPS: Step[] = [
 export function AboutHowItWorks() {
   return (
     <section className="relative border-b border-border">
-      <div className="mx-auto max-w-7xl px-4 pt-20 text-center md:px-8 md:pt-28">
+      <div className="mx-auto max-w-7xl px-4 pt-14 text-center sm:px-6 sm:pt-20 md:px-8 md:pt-28">
         <p className="font-mono text-sm text-primary">// how_it_works</p>
-        <h2 className="mt-3 font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+        <h2 className="mt-3 text-balance font-heading text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
           How we take a product live
         </h2>
-        <p className="mx-auto mt-5 max-w-3xl text-lg text-muted-foreground">
+        <p className="mx-auto mt-4 max-w-3xl text-sm text-muted-foreground sm:mt-5 sm:text-base md:text-lg">
           Five pinned phases from first conversation to production support —
           one studio owning the whole path.
         </p>

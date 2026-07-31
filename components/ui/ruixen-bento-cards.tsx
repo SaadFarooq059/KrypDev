@@ -39,13 +39,13 @@ const PlusCard: React.FC<{
   return (
     <div
       className={cn(
-        'relative flex min-h-[200px] flex-col justify-between rounded-lg border border-dashed border-border bg-card/60 p-6',
+        'relative flex min-h-[160px] flex-col justify-between rounded-lg border border-dashed border-border bg-card/60 p-4 sm:min-h-[180px] sm:p-5 md:min-h-[200px] md:p-6',
         className,
       )}
     >
       <CornerPlusIcons />
       <div className="relative z-10 space-y-2">
-        <h3 className="font-heading text-xl font-bold text-foreground">
+        <h3 className="font-heading text-lg font-bold text-foreground sm:text-xl">
           {title}
         </h3>
         <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
@@ -58,10 +58,10 @@ const PlusCard: React.FC<{
 
 const CornerPlusIcons = () => (
   <>
-    <PlusIcon className="absolute -top-3 -left-3" />
-    <PlusIcon className="absolute -top-3 -right-3" />
-    <PlusIcon className="absolute -bottom-3 -left-3" />
-    <PlusIcon className="absolute -bottom-3 -right-3" />
+    <PlusIcon className="absolute -top-2.5 -left-2.5 sm:-top-3 sm:-left-3" />
+    <PlusIcon className="absolute -top-2.5 -right-2.5 sm:-top-3 sm:-right-3" />
+    <PlusIcon className="absolute -bottom-2.5 -left-2.5 sm:-bottom-3 sm:-left-3" />
+    <PlusIcon className="absolute -bottom-2.5 -right-2.5 sm:-bottom-3 sm:-right-3" />
   </>
 )
 
@@ -74,7 +74,7 @@ const PlusIcon = ({ className }: { className?: string }) => (
     height={24}
     strokeWidth="1"
     stroke="currentColor"
-    className={cn('size-6 text-primary', className)}
+    className={cn('size-5 text-primary sm:size-6', className)}
   >
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
   </svg>
@@ -83,13 +83,15 @@ const PlusIcon = ({ className }: { className?: string }) => (
 export default function RuixenBentoCards() {
   return (
     <section className="border-y border-border bg-transparent">
-      <div className="container mx-auto border-x border-border px-4 py-12 md:py-16">
-        <p className="mb-8 font-mono text-sm text-primary">// our_story</p>
+      <div className="container mx-auto overflow-visible border-x border-border px-3 py-10 sm:px-4 sm:py-12 md:py-16">
+        <p className="mb-6 font-mono text-sm text-primary sm:mb-8">
+          // our_story
+        </p>
 
         <div className="grid auto-rows-auto grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           <PlusCard
             {...cardContents[0]}
-            className="lg:col-span-3 lg:row-span-2"
+            className="sm:col-span-2 lg:col-span-3 lg:row-span-2"
           />
           <PlusCard
             {...cardContents[1]}
@@ -97,7 +99,7 @@ export default function RuixenBentoCards() {
           />
           <PlusCard
             {...cardContents[2]}
-            className="lg:col-span-4 lg:row-span-1"
+            className="sm:col-span-2 lg:col-span-4 lg:row-span-1"
           />
           <PlusCard
             {...cardContents[3]}
@@ -105,15 +107,15 @@ export default function RuixenBentoCards() {
           />
           <PlusCard
             {...cardContents[4]}
-            className="lg:col-span-2 lg:row-span-1"
+            className="sm:col-span-2 lg:col-span-2 lg:row-span-1"
           />
         </div>
 
-        <div className="mt-6 ml-auto max-w-2xl px-4 text-right lg:-mt-20">
-          <h2 className="mb-4 font-heading text-4xl font-bold text-foreground md:text-6xl">
+        <div className="mt-8 max-w-2xl text-left sm:mt-10 sm:ml-auto sm:text-right lg:-mt-20">
+          <h2 className="mb-3 font-heading text-3xl font-bold text-foreground sm:mb-4 sm:text-4xl md:text-5xl lg:text-6xl">
             We build what comes next
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
             KrypDev is a partner, not just a vendor — AI-first engineering for
             ambitious teams that need the right software, shipped with care.
           </p>

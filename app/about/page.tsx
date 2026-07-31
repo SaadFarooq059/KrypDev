@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <main className="relative min-h-screen bg-background">
       <Navbar />
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-[100svh] w-full overflow-hidden">
         <CosmicParallaxBg
           head="KrypDev"
           text="AI-First, Engineering, Worldwide"

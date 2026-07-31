@@ -29,7 +29,7 @@ export interface Orbit {
 
 const defaultOrbits: Orbit[] = [
   {
-    size: 'w-[22rem] h-[22rem] md:w-[34rem] md:h-[34rem]',
+    size: 'w-[16rem] h-[16rem] sm:w-[22rem] sm:h-[22rem] md:w-[34rem] md:h-[34rem]',
     duration: 22,
     items: [
       { node: <Target />, alt: 'Outcomes', angle: -60 },
@@ -38,7 +38,7 @@ const defaultOrbits: Orbit[] = [
     ],
   },
   {
-    size: 'w-[29rem] h-[29rem] md:w-[43rem] md:h-[43rem]',
+    size: 'w-[21rem] h-[21rem] sm:w-[29rem] sm:h-[29rem] md:w-[43rem] md:h-[43rem]',
     duration: 30,
     items: [
       { node: <Eye />, alt: 'Transparency', angle: 0 },
@@ -46,7 +46,7 @@ const defaultOrbits: Orbit[] = [
     ],
   },
   {
-    size: 'w-[36rem] h-[36rem] md:w-[53rem] md:h-[53rem]',
+    size: 'w-[26rem] h-[26rem] sm:w-[36rem] sm:h-[36rem] md:w-[53rem] md:h-[53rem]',
     duration: 38,
     items: [
       { node: <ShieldCheck />, alt: 'Reliability', angle: -60 },
@@ -66,9 +66,7 @@ export default function OrbitingCirclesGlobe({
   return (
     <div
       className={cn(
-        // Height hugs the largest ring radius (18rem / 26.5rem) plus the icon
-        // overhang, so no dead space collects above the arcs.
-        'relative flex h-[20.5rem] w-full justify-center overflow-hidden md:h-[29.5rem]',
+        'relative flex h-[15.5rem] w-full justify-center overflow-hidden sm:h-[20.5rem] md:h-[29.5rem]',
         className,
       )}
     >
@@ -91,7 +89,7 @@ export default function OrbitingCirclesGlobe({
         }
       `}</style>
 
-      <div className="pointer-events-none absolute bottom-0 left-1/2 z-10 aspect-square w-[20rem] -translate-x-1/2 translate-y-1/2 sm:w-[24rem] md:w-[34rem] lg:w-[40rem]">
+      <div className="pointer-events-none absolute bottom-0 left-1/2 z-10 aspect-square w-[15rem] -translate-x-1/2 translate-y-1/2 sm:w-[20rem] md:w-[34rem] lg:w-[40rem]">
         <ParticleSphereAnimation />
       </div>
 
@@ -120,7 +118,7 @@ export default function OrbitingCirclesGlobe({
             {allItems.map((item) => (
               <div
                 key={item.alt}
-                className="absolute left-1/2 top-0 -ml-8 flex h-1/2 origin-bottom flex-col items-center justify-start md:-ml-10"
+                className="absolute left-1/2 top-0 -ml-6 flex h-1/2 origin-bottom flex-col items-center justify-start sm:-ml-8 md:-ml-10"
                 style={
                   {
                     '--start-angle': `${item.angle}deg`,
@@ -129,7 +127,7 @@ export default function OrbitingCirclesGlobe({
                 }
               >
                 <div
-                  className="relative z-10 -mt-8 flex size-16 items-center justify-center rounded-full border border-primary/30 bg-card text-primary shadow-[0_0_30px_-10px_rgba(192,132,252,0.65)] md:-mt-10 md:size-20 [&_svg]:size-7 md:[&_svg]:size-8"
+                  className="relative z-10 -mt-6 flex size-12 items-center justify-center rounded-full border border-primary/30 bg-card text-primary shadow-[0_0_30px_-10px_rgba(192,132,252,0.65)] sm:-mt-8 sm:size-16 md:-mt-10 md:size-20 [&_svg]:size-5 sm:[&_svg]:size-7 md:[&_svg]:size-8"
                   style={
                     {
                       '--counter-offset': `${-item.angle}deg`,

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { LazyMotion, domAnimation, m } from 'motion/react'
+import { cn } from '@/lib/utils'
 
 interface CardProps {
   number: string
@@ -34,23 +35,28 @@ const Card = ({
 }: CardProps) => {
   return (
     <div
-      className={`relative w-full transition-transform duration-300 hover:z-30 hover:scale-105 md:w-[380px] ${rotate} ${className}`}
+      className={cn(
+        'relative w-full max-w-md transition-transform duration-300 hover:z-30 hover:scale-[1.02] sm:max-w-lg lg:max-w-none lg:w-[340px] xl:w-[380px]',
+        'rotate-0',
+        rotate,
+        className,
+      )}
     >
-      <div className="rounded-[28px] border border-border bg-card p-3 shadow-[0_20px_50px_-20px_rgba(192,132,252,0.35)]">
-        <Pin className="mx-auto mb-7 h-10 w-10 text-primary" />
-        <div className="relative flex h-full flex-col overflow-hidden rounded-[18px] border border-primary/25 bg-primary/10 p-6">
+      <div className="rounded-2xl border border-border bg-card p-2.5 shadow-[0_20px_50px_-20px_rgba(192,132,252,0.35)] sm:rounded-[28px] sm:p-3">
+        <Pin className="mx-auto mb-4 h-8 w-8 text-primary sm:mb-7 sm:h-10 sm:w-10" />
+        <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-primary/25 bg-primary/10 p-4 sm:rounded-[18px] sm:p-6">
           <span
-            className="mb-6 font-heading text-5xl font-bold text-primary"
+            className="mb-3 font-heading text-4xl font-bold text-primary sm:mb-6 sm:text-5xl"
             style={{
               fontFamily: '"Comic Sans MS", "Chalkboard SE", sans-serif',
             }}
           >
             {number}
           </span>
-          <h3 className="mb-3 font-heading text-3xl font-semibold leading-none text-foreground">
+          <h3 className="mb-2 font-heading text-2xl font-semibold leading-tight text-foreground sm:mb-3 sm:text-3xl sm:leading-none">
             {title}
           </h3>
-          <p className="text-base leading-relaxed tracking-tight text-muted-foreground">
+          <p className="text-sm leading-relaxed tracking-tight text-muted-foreground sm:text-base">
             {description}
           </p>
         </div>
@@ -76,17 +82,26 @@ export interface HowItWorksProps {
 }
 
 const DEFAULT_CARD_POSITIONS: StepPosition[] = [
-  { className: 'md:absolute md:top-0 md:left-[8%]', rotate: 'rotate-6' },
   {
-    className: 'md:absolute md:top-[140px] md:right-[8%]',
-    rotate: '-rotate-6',
+    className: 'mx-auto lg:absolute lg:top-0 lg:left-[8%] lg:mx-0',
+    rotate: 'lg:rotate-6',
   },
-  { className: 'md:absolute md:top-[520px] md:left-[8%]', rotate: 'rotate-6' },
   {
-    className: 'md:absolute md:top-[660px] md:right-[6%]',
-    rotate: '-rotate-6',
+    className: 'mx-auto lg:absolute lg:top-[140px] lg:right-[8%] lg:mx-0',
+    rotate: 'lg:-rotate-6',
   },
-  { className: 'md:absolute md:top-[1000px] md:left-[8%]', rotate: 'rotate-6' },
+  {
+    className: 'mx-auto lg:absolute lg:top-[520px] lg:left-[8%] lg:mx-0',
+    rotate: 'lg:rotate-6',
+  },
+  {
+    className: 'mx-auto lg:absolute lg:top-[660px] lg:right-[6%] lg:mx-0',
+    rotate: 'lg:-rotate-6',
+  },
+  {
+    className: 'mx-auto lg:absolute lg:top-[1000px] lg:left-[8%] lg:mx-0',
+    rotate: 'lg:rotate-6',
+  },
 ]
 
 const STAGE_WIDTH = 1280
@@ -119,8 +134,7 @@ export default function HowItWorks({
     },
     {
       title: 'Operate & Evolve',
-      description:
-        'The same team that built it stays on call after launch.',
+      description: 'The same team that built it stays on call after launch.',
     },
   ]
 
@@ -136,7 +150,12 @@ export default function HowItWorks({
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className={`relative bg-background px-4 max-md:pb-28 max-md:pt-10 md:px-8 md:py-24 ${className}`}>
+      <div
+        className={cn(
+          'relative bg-background px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10 md:px-8 lg:py-24',
+          className,
+        )}
+      >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.12]"
           style={{
@@ -145,17 +164,17 @@ export default function HowItWorks({
             marginTop: '4px',
           }}
         />
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background sm:w-1/3" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background sm:w-1/3" />
 
         <div className="relative z-10 mx-auto max-w-7xl">
           <div
-            className="relative mx-auto flex h-auto w-full max-w-[1280px] flex-col space-y-10 md:block md:h-[var(--md-height)] md:space-y-0"
+            className="relative mx-auto flex h-auto w-full max-w-[1280px] flex-col items-stretch space-y-6 sm:space-y-8 lg:block lg:h-[var(--md-height)] lg:space-y-0"
             style={{ '--md-height': `${height}px` } as React.CSSProperties}
           >
             {data.length > 1 && (
               <svg
-                className="pointer-events-none absolute top-0 left-0 z-0 hidden h-full w-full md:block"
+                className="pointer-events-none absolute top-0 left-0 z-0 hidden h-full w-full lg:block"
                 viewBox={`0 0 ${STAGE_WIDTH} ${height}`}
                 preserveAspectRatio="none"
               >

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'motion/react'
 import {
@@ -63,6 +63,15 @@ const impactCards: {
 
 export default function ImpactSection() {
   const [openCard, setOpenCard] = useState(0)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)')
+    const sync = () => setIsDesktop(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
 
   const goPrev = () =>
     setOpenCard((prev) => (prev - 1 + impactCards.length) % impactCards.length)
@@ -70,23 +79,23 @@ export default function ImpactSection() {
     setOpenCard((prev) => (prev + 1) % impactCards.length)
 
   return (
-    <section className="w-full border-y border-border bg-secondary/20 py-12 sm:py-16 md:py-20">
+    <section className="w-full border-y border-border bg-secondary/20 py-10 sm:py-14 md:py-20">
       <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8">
-        <div className="mb-8 flex items-start justify-between gap-6 sm:mb-10">
+        <div className="mb-6 flex items-start justify-between gap-4 sm:mb-8 sm:gap-6 md:mb-10">
           <div className="max-w-[620px]">
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-primary sm:mb-4">
               // the_way_we_work
             </p>
-            <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            <h2 className="font-heading text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
               Principles that drive every build
             </h2>
-            <p className="mt-4 max-w-[560px] text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-3 max-w-[560px] text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
               Fast delivery, scalable architecture, always-on support, and an
               AI-first mindset — measurable impact across every engagement.
             </p>
           </div>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden shrink-0 items-center gap-2 md:flex">
             <button
               type="button"
               aria-label="Previous"
@@ -116,28 +125,34 @@ export default function ImpactSection() {
             return (
               <motion.div
                 key={card.id}
-                onMouseEnter={() => setOpenCard(idx)}
+                onMouseEnter={() => {
+                  if (isDesktop) setOpenCard(idx)
+                }}
                 onFocus={() => setOpenCard(idx)}
                 onClick={() => setOpenCard(idx)}
                 tabIndex={0}
-                animate={{ flex: isOpen ? 4.8 : 1.5 }}
+                animate={isDesktop ? { flex: isOpen ? 4.8 : 1.5 } : undefined}
                 transition={{ type: 'spring', stiffness: 220, damping: 28 }}
-                className={`relative h-[360px] cursor-pointer overflow-hidden border border-border md:h-auto ${
+                className={`relative cursor-pointer overflow-hidden border border-border ${
                   isOpen
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-card text-foreground'
+                } ${
+                  isOpen
+                    ? 'min-h-[300px]'
+                    : 'h-[100px] sm:h-[112px] md:h-auto'
                 }`}
               >
                 <motion.div
-                  animate={{ height: targetHeight }}
+                  animate={isDesktop ? { height: targetHeight } : undefined}
                   transition={{ type: 'spring', stiffness: 260, damping: 30 }}
                   className="h-full"
                 >
                   {isOpen ? (
-                    <div className="flex h-full flex-col p-6 sm:p-8 md:p-10">
+                    <div className="flex h-full flex-col p-5 sm:p-6 md:p-8 lg:p-10">
                       {card.isFeature ? (
                         <div className="max-w-[280px]">
-                          <h3 className="mb-4 font-heading text-[28px] font-semibold leading-[1.05] sm:text-[32px] md:text-[36px]">
+                          <h3 className="mb-3 font-heading text-2xl font-semibold leading-[1.05] sm:mb-4 sm:text-[28px] md:text-[32px] lg:text-[36px]">
                             {card.featureTitle}
                             <br />
                             {card.featureSubtitle}
@@ -154,24 +169,24 @@ export default function ImpactSection() {
                           <p className="font-mono text-[10px] font-semibold uppercase tracking-[1.3px] opacity-80">
                             How we work
                           </p>
-                          <h3 className="mt-2 font-heading text-[22px] font-semibold leading-[1.08] sm:text-[26px] md:text-[30px]">
+                          <h3 className="mt-2 font-heading text-xl font-semibold leading-[1.08] sm:text-[22px] md:text-[26px] lg:text-[30px]">
                             {card.title}
                           </h3>
-                          <p className="mt-3 text-[13px] leading-[1.6] opacity-90 sm:text-[14px]">
+                          <p className="mt-2 text-[13px] leading-[1.6] opacity-90 sm:mt-3 sm:text-[14px]">
                             {card.description}
                           </p>
                           <Link
                             href="/contact"
-                            className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[1.4px]"
+                            className="mt-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[1.4px] sm:mt-4"
                           >
                             Start a project <ArrowRight size={14} />
                           </Link>
                         </div>
                       )}
 
-                      <div className="mt-6 grid flex-1 grid-cols-1 items-end gap-4 sm:grid-cols-[1.05fr_1fr]">
+                      <div className="mt-5 grid flex-1 grid-cols-1 items-end gap-4 sm:mt-6 sm:grid-cols-[1.05fr_1fr]">
                         <div className="self-start sm:self-end">
-                          <p className="font-heading text-[56px] font-semibold leading-none sm:text-[62px] md:text-[72px]">
+                          <p className="font-heading text-5xl font-semibold leading-none sm:text-[56px] md:text-[62px] lg:text-[72px]">
                             {card.metric}
                           </p>
                           <p className="mt-2 text-[11px] font-semibold uppercase tracking-[1.2px]">
@@ -186,15 +201,15 @@ export default function ImpactSection() {
                               : 'border-border bg-secondary/40'
                           } ${
                             card.isFeature
-                              ? 'h-[180px] sm:h-[220px] md:h-[240px]'
-                              : 'h-[140px] sm:h-[160px] md:h-[180px]'
+                              ? 'h-[140px] sm:h-[180px] md:h-[220px] lg:h-[240px]'
+                              : 'h-[110px] sm:h-[140px] md:h-[160px] lg:h-[180px]'
                           }`}
                         >
                           <Icon
                             className={`${
                               card.isFeature
-                                ? 'size-20 sm:size-24'
-                                : 'size-14 sm:size-16'
+                                ? 'size-16 sm:size-20 md:size-24'
+                                : 'size-12 sm:size-14 md:size-16'
                             } opacity-90`}
                             strokeWidth={1.25}
                           />
@@ -202,15 +217,15 @@ export default function ImpactSection() {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex h-full flex-col justify-between p-5 sm:p-6 md:p-7">
-                      <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-primary">
+                    <div className="flex h-full flex-row items-center justify-between gap-4 p-4 sm:p-5 md:flex-col md:items-stretch md:justify-between md:p-6 lg:p-7">
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary sm:size-11">
                         <Icon className="size-5" strokeWidth={1.5} />
                       </div>
-                      <div>
-                        <p className="font-heading text-[28px] font-semibold leading-none text-primary sm:text-[32px] md:text-[36px]">
+                      <div className="min-w-0 flex-1 text-right md:mt-auto md:text-left">
+                        <p className="font-heading text-2xl font-semibold leading-none text-primary sm:text-[28px] md:text-[32px] lg:text-[36px]">
                           {card.metric}
                         </p>
-                        <p className="mt-2 max-w-[120px] text-[11px] font-semibold uppercase tracking-[1.2px] text-muted-foreground">
+                        <p className="mt-1 text-[11px] font-semibold uppercase tracking-[1.2px] text-muted-foreground sm:mt-2 md:max-w-[120px]">
                           {card.title}
                         </p>
                       </div>
@@ -222,7 +237,39 @@ export default function ImpactSection() {
           })}
         </div>
 
-        <div className="mt-6 flex items-center justify-center rounded-full border border-border bg-card px-5 py-4 text-center sm:px-8">
+        <div className="mt-5 flex items-center justify-center gap-3 md:hidden">
+          <button
+            type="button"
+            aria-label="Previous"
+            onClick={goPrev}
+            className="flex size-10 items-center justify-center rounded-full border border-border bg-card text-foreground"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <div className="flex gap-1.5">
+            {impactCards.map((card, idx) => (
+              <button
+                key={card.id}
+                type="button"
+                aria-label={`Show ${card.title}`}
+                onClick={() => setOpenCard(idx)}
+                className={`h-1.5 rounded-full transition-all ${
+                  openCard === idx ? 'w-6 bg-primary' : 'w-1.5 bg-border'
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            aria-label="Next"
+            onClick={goNext}
+            className="flex size-10 items-center justify-center rounded-full border border-border bg-card text-foreground"
+          >
+            <ChevronRight size={16} />
+          </button>
+        </div>
+
+        <div className="mt-5 flex items-center justify-center rounded-full border border-border bg-card px-4 py-3.5 text-center sm:mt-6 sm:px-8 sm:py-4">
           <p className="text-[13px] leading-[1.4] text-muted-foreground sm:text-[14px]">
             Ready to build with us?{' '}
             <Link

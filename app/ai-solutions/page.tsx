@@ -4,6 +4,7 @@ import { Navbar } from '@/components/navbar'
 import { SiteFooter } from '@/components/site-footer'
 import AetherFlowHero from '@/components/ui/aether-flow-hero'
 import { BuildSystemCta } from '@/components/build-system-cta'
+import { AiNeuralIntro } from '@/components/ai-neural-intro'
 import { AiProjectShowcase } from '@/components/ai-project-showcase'
 import AiAgentPipeline from '@/components/ui/ai-agent-pipeline'
 
@@ -105,6 +106,8 @@ export default function AiSolutionsPage() {
         ctaLabel="Talk to us"
         ctaHref="/contact"
       />
+
+      <AiNeuralIntro />
 
       <section className="relative overflow-hidden py-24">
         <div

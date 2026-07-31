@@ -50,9 +50,9 @@ function Chevrons({ direction }: { direction: 'left' | 'right' }) {
 
 function CornerBadge({ label }: { label: string }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-sm bg-card px-2.5 py-1.5 shadow-lg ring-1 ring-border">
+    <div className="inline-flex max-w-[46%] items-center gap-1.5 rounded-sm bg-card px-2 py-1.5 shadow-lg ring-1 ring-border sm:max-w-none sm:gap-2 sm:px-2.5">
       <span className="size-2 shrink-0 bg-primary" aria-hidden="true" />
-      <span className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-foreground md:text-xs">
+      <span className="truncate font-mono text-[9px] font-medium uppercase tracking-[0.14em] text-foreground sm:text-[10px] md:text-xs md:tracking-[0.18em]">
         {label}
       </span>
     </div>
@@ -97,7 +97,7 @@ export function BuildSystemCta({
         }}
       />
 
-      <div className="relative mx-auto flex min-h-[28rem] max-w-6xl flex-col px-4 pt-16 md:min-h-[34rem] md:px-6 md:pt-20">
+      <div className="relative mx-auto flex min-h-[22rem] max-w-6xl flex-col px-4 pt-12 sm:min-h-[28rem] sm:pt-16 md:min-h-[34rem] md:px-6 md:pt-20">
         <motion.div
           className="relative z-10 mx-auto max-w-4xl text-center"
           initial={{ opacity: 0, y: 18 }}
@@ -105,13 +105,13 @@ export function BuildSystemCta({
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
         >
-          <h2 className="font-heading text-4xl font-bold uppercase leading-[0.95] tracking-tight text-foreground sm:text-5xl md:text-7xl">
-            <span className="mb-1 flex items-center justify-center gap-3 md:gap-5">
+          <h2 className="font-heading text-3xl font-bold uppercase leading-[0.95] tracking-tight text-foreground sm:text-5xl md:text-7xl">
+            <span className="mb-1 flex items-center justify-center gap-2 sm:gap-3 md:gap-5">
               <Chevrons direction="right" />
-              <span>{line1}</span>
+              <span className="min-w-0 break-words">{line1}</span>
               <Chevrons direction="left" />
             </span>
-            <span className="mt-1 block text-gradient">{line2}</span>
+            <span className="mt-1 block break-words text-gradient">{line2}</span>
           </h2>
         </motion.div>
 
