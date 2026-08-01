@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, Mail } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -60,12 +60,9 @@ export function ContactForm() {
       >
         Send Message <ArrowRight className="size-4" />
       </button>
-      <a
-        href="mailto:hello@krypdev.com"
-        className="mt-4 flex items-center justify-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
-      >
-        <Mail className="size-4" /> hello@krypdev.com
-      </a>
+      <p className="mt-4 text-center font-mono text-sm text-muted-foreground">
+        Email &amp; phone — coming soon
+      </p>
     </form>
   )
 }

@@ -117,15 +117,7 @@ export function Navbar() {
 
         <DesktopMenu />
 
-        <div className="flex items-center gap-2">
-          <Link
-            href="/contact"
-            className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-shadow hover:glow-accent md:inline-block"
-          >
-            Get a Quote
-          </Link>
-          <MobileNav />
-        </div>
+        <MobileNav />
       </nav>
     </header>
   )
@@ -278,9 +270,9 @@ function MobileNav() {
           <SheetClose asChild>
             <Link
               href="/contact"
-              className="mt-2 inline-flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground"
+              className="mt-2 block rounded-lg px-2 py-3 text-sm font-medium hover:bg-secondary/50 hover:text-primary"
             >
-              Get a Quote
+              Contact
             </Link>
           </SheetClose>
         </div>

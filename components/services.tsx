@@ -44,7 +44,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative border-y border-border py-16 sm:py-20 md:py-24"
+      className="relative border-y border-border pt-10 pb-16 sm:pt-14 sm:pb-20 md:pt-16 md:pb-24"
     >
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="mb-10 max-w-2xl sm:mb-14">

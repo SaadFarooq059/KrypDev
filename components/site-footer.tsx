@@ -103,16 +103,7 @@ export function SiteFooter() {
               {contactInfo.map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-muted-foreground">
                   {item.icon}
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="transition-colors hover:text-primary"
-                    >
-                      {item.text}
-                    </a>
-                  ) : (
-                    <span>{item.text}</span>
-                  )}
+                  <span>{item.text}</span>
                 </li>
               ))}
             </ul>

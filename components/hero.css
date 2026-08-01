@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  padding-bottom: clamp(3rem, 8vh, 6rem);
+  padding-bottom: 0;
   background:
     radial-gradient(
       120% 70% at 50% -10%,
@@ -29,7 +29,7 @@
   position: relative;
   z-index: 2;
   max-width: 780px;
-  padding: clamp(7.5rem, 16vh, 11rem) 1rem 0;
+  padding: clamp(6.5rem, 12vh, 9rem) 1rem 0;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -138,7 +138,7 @@
   z-index: 1;
   width: min(1200px, 100%);
   height: clamp(220px, 38vh, 480px);
-  margin-top: clamp(1rem, 4vh, 3rem);
+  margin-top: auto;
   overflow: hidden;
 }
 
@@ -164,6 +164,22 @@
   pointer-events: none;
 }
 
+/* Portrait / vertical screens: hug content — no empty stretch below the globe */
+@media (orientation: portrait), (max-width: 900px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-content {
+    padding-top: clamp(5.5rem, 11vh, 8rem);
+  }
+
+  .hero-globe {
+    margin-top: 0.75rem;
+    height: clamp(200px, 34vh, 380px);
+  }
+}
+
 @media (max-width: 640px) {
   .hero-actions {
     width: 100%;
@@ -174,5 +190,10 @@
   .hero .btn {
     width: min(100%, 280px);
     justify-content: center;
+  }
+
+  .hero-globe {
+    margin-top: 0.5rem;
+    height: clamp(180px, 30vh, 280px);
   }
 }
