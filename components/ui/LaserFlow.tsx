@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type CSSProperties } from 'react';
 import * as THREE from 'three';
+import { isWebGLAvailable } from '@/lib/webgl';
 import './LaserFlow.css';
 
 const VERT = `
@@ -343,19 +344,25 @@ export default function LaserFlow({
 
   useEffect(() => {
     const mount = mountRef.current;
-    if (!mount) return;
+    if (!mount || !isWebGLAvailable()) return;
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      alpha: false,
-      depth: false,
-      stencil: false,
-      powerPreference: 'high-performance',
-      premultipliedAlpha: false,
-      preserveDrawingBuffer: false,
-      failIfMajorPerformanceCaveat: false,
-      logarithmicDepthBuffer: false,
-    });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        alpha: false,
+        depth: false,
+        stencil: false,
+        powerPreference: 'high-performance',
+        premultipliedAlpha: false,
+        preserveDrawingBuffer: false,
+        failIfMajorPerformanceCaveat: false,
+        logarithmicDepthBuffer: false,
+      });
+    } catch {
+      // GPU unavailable at context-creation time — render the section without the effect.
+      return;
+    }
     rendererRef.current = renderer;
 
     baseDprRef.current = Math.min(dpr ?? (window.devicePixelRatio || 1), 2);

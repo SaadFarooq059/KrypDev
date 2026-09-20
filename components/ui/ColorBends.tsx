@@ -3,6 +3,7 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
 import * as THREE from 'three'
 
+import { isWebGLAvailable } from '@/lib/webgl'
 import './ColorBends.css'
 
 const MAX_COLORS = 8
@@ -160,7 +161,7 @@ export default function ColorBends({
 
   useEffect(() => {
     const container = containerRef.current
-    if (!container) return
+    if (!container || !isWebGLAvailable()) return
 
     const scene = new THREE.Scene()
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
@@ -200,11 +201,19 @@ export default function ColorBends({
     const mesh = new THREE.Mesh(geometry, material)
     scene.add(mesh)
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      powerPreference: 'high-performance',
-      alpha: true,
-    })
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        powerPreference: 'high-performance',
+        alpha: true,
+      })
+    } catch {
+      // GPU unavailable at context-creation time — render the section without the effect.
+      geometry.dispose()
+      material.dispose()
+      return
+    }
     rendererRef.current = renderer
     renderer.outputColorSpace = THREE.SRGBColorSpace
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))

@@ -3,6 +3,7 @@
 import createGlobe, { type COBEOptions } from 'cobe'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
+import { isWebGLAvailable } from '@/lib/webgl'
 
 const GLOBE_CONFIG: COBEOptions = {
   width: 800,
@@ -81,15 +82,24 @@ export function Globe({
   }
 
   useEffect(() => {
+    if (!canvasRef.current || !isWebGLAvailable()) return
+
     window.addEventListener('resize', onResize)
     onResize()
 
-    const globe = createGlobe(canvasRef.current!, {
-      ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender,
-    })
+    let globe: ReturnType<typeof createGlobe>
+    try {
+      globe = createGlobe(canvasRef.current, {
+        ...config,
+        width: width * 2,
+        height: width * 2,
+        onRender,
+      })
+    } catch {
+      // GPU unavailable at context-creation time — leave the canvas blank.
+      window.removeEventListener('resize', onResize)
+      return
+    }
 
     setTimeout(() => {
       if (canvasRef.current) canvasRef.current.style.opacity = '1'

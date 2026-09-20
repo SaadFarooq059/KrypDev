@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { isWebGLAvailable } from '@/lib/webgl'
 
 /**
  * Realistic rotating Earth, purple-tinted, shown as a "half globe"
@@ -15,7 +16,7 @@ export default function HeroGlobe() {
 
   useEffect(() => {
     const mount = mountRef.current
-    if (!mount) return
+    if (!mount || !isWebGLAvailable()) return
 
     const scene = new THREE.Scene()
 
@@ -27,10 +28,16 @@ export default function HeroGlobe() {
     )
     camera.position.set(0, 0.4, 4.2)
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-    })
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      })
+    } catch {
+      // GPU unavailable at context-creation time — leave the hero without the globe.
+      return
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setSize(mount.clientWidth, mount.clientHeight)
     mount.appendChild(renderer.domElement)
