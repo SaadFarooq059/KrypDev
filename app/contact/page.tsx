@@ -12,11 +12,17 @@ export const metadata: Metadata = {
     'Tell us about your project. KrypDev responds within one business day — custom development, AI solutions, and IT support.',
 }
 
-const channels = [
+const channels: {
+  icon: typeof Mail
+  label: string
+  value: string
+  href?: string
+}[] = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'Coming soon',
+    value: 'info@krypdev.com',
+    href: 'mailto:info@krypdev.com',
   },
   {
     icon: Phone,
@@ -26,7 +32,7 @@ const channels = [
   {
     icon: MapPin,
     label: 'Location',
-    value: 'Remote · Worldwide',
+    value: 'London, United Kingdom',
   },
   {
     icon: Clock,
@@ -73,7 +79,13 @@ export default function ContactPage() {
                     {c.label}
                   </p>
                   <p className="mt-1 font-heading font-semibold text-foreground">
-                    {c.value}
+                    {c.href ? (
+                      <a href={c.href} className="transition-colors hover:text-primary">
+                        {c.value}
+                      </a>
+                    ) : (
+                      c.value
+                    )}
                   </p>
                 </div>
               ))}
